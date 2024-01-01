@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-description: An optional about page
+description: About page
 feature_image: "https://github.com/LinquanS.png"
 ---
 
