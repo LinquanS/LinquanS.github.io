@@ -12,7 +12,7 @@ lang: en-UK
 timezone: Europe/London
 
 # Site title
-title: "Home Page"
+title: "Home"
 
 # A description of your site for meta tag, search engine results.
 description: "This is a personal website for Linquan Sun"
@@ -34,8 +34,8 @@ google_analytics: ""
 
 # Site navigation - each item must have a title and a url.
 navigation:
-#   - text: Home
-#     url: /
+  - text: Home
+    url: /
   - text: About
     url: /about/
 
