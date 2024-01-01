@@ -37,7 +37,7 @@ navigation:
 #   - text: Home
 #     url: /
   - text: About
-    url: /about/
+    url: /about
 
 # The shortname for your Disqus site to enable comments.
 disqus: 
