@@ -12,6 +12,7 @@ for (const photo of photos) {
   }
   groupMap.get(photo.rollId).photos.push(photo);
 }
+const populatedGroups = groups.filter((group) => group.photos.length > 0);
 ---
 <!doctype html>
 <html lang="en-GB">
@@ -32,12 +33,12 @@ for (const photo of photos) {
         <h1>On film<span>.</span></h1>
         <p class="intro-copy">Photographs from the film rolls and folders below.</p>
       </section>
-      {groups.length > 0 ? (
+      {populatedGroups.length > 0 ? (
         <>
           <nav class="category-index" aria-label="Film rolls">
-            {groups.map((group) => <a class="category-link" href={`#${group.id}`}>{group.label}</a>)}
+            {populatedGroups.map((group) => <a class="category-link" href={`#${group.id}`}>{group.label}</a>)}
           </nav>
-          {groups.map((group) => (
+          {populatedGroups.map((group) => (
             <section class="category-section" id={group.id} aria-labelledby={`${group.id}-title`}>
               <div class="section-heading">
                 <div><p class="eyebrow">{group.photos.length} {group.photos.length === 1 ? "frame" : "frames"}</p><h2 id={`${group.id}-title`}>{group.label}</h2></div>

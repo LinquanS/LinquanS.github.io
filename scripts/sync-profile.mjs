@@ -8,8 +8,8 @@ const output = path.join(process.cwd(), "public", "images", "profile.jpg");
 await fs.mkdir(path.dirname(output), { recursive: true });
 await sharp(source, { failOn: "none" })
   .rotate()
-  .resize(900, 900, { fit: "cover", position: sharp.strategy.attention })
+  .resize({ width: 1200, height: 1600, fit: "inside", withoutEnlargement: true })
   .jpeg({ quality: 88, mozjpeg: true, progressive: true })
   .toFile(output);
 
-console.log(`Created square profile image at ${path.relative(process.cwd(), output)}.`);
+console.log(`Created full-frame profile image at ${path.relative(process.cwd(), output)}.`);

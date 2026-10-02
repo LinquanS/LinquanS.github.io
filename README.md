@@ -12,7 +12,7 @@ flowchart LR
   H[Film originals<br/>images/film/roll folders] -->|film:sync with Sharp| I[Optimized film images<br/>same roll folders]
   B --> C[Astro portfolio and photo manifests]
   I --> C
-  J[Profile original<br/>images/profile/profile.JPG] -->|profile:sync with Sharp| K[Square profile image]
+  J[Profile original<br/>images/profile/profile.JPG] -->|profile:sync with Sharp| K[Full-frame optimized profile image]
   K --> C
   C --> D[GitHub repository]
   D -->|push to main| E[GitHub Actions build]
@@ -31,7 +31,7 @@ flowchart LR
 2. Run `pnpm photos:sync`. Sharp reads and rotates images according to their orientation, then creates 2400px display images and 640px thumbnails under `public/images/gallery/`. `src/data/photos.json` is regenerated, including a monochrome flag so the B&W preview control is hidden for already monochrome photographs.
 3. Photos are grouped by folder and sorted by filename within each folder, independent of image orientation.
 4. Put film scans into `images/film/`, keeping one folder per roll (and any nested folders you want). Run `pnpm film:sync` to create optimized copies under `public/images/film/` while keeping the roll and subfolder names. It also refreshes `src/data/film.json`. The **Film photographs** link opens a separate `/film/` gallery grouped by those folders.
-5. Keep the profile source at `images/profile/profile.JPG`. Run `pnpm profile:sync` to create the square, optimized `public/images/profile.jpg` used on the homepage.
+5. Keep the profile source at `images/profile/profile.JPG`. Run `pnpm profile:sync` to create a full-frame, optimized `public/images/profile.jpg` shown on the About page.
 6. Review the site locally, then commit generated assets and manifests with any code changes.
 
 The public photo copies have their EXIF data removed to avoid accidentally publishing private details such as GPS coordinates. Optional display metadata can be added to the matching entries in `src/data/photos.json` and `src/data/film.json`: `title`, `location`, `date`, `camera`, and `lens`.
@@ -40,29 +40,21 @@ The portfolio displays responsive galleries with a zoomable lightbox and a rever
 
 Keep camera originals backed up separately. Only curated, optimized images belong in this repository.
 
-## Local development
+## Commands
 
-The project uses Node.js 24 in its deployment workflow and pnpm 11.19.0.
+The project uses Node.js 24 and pnpm 11.19.0. Run these from the repository root.
 
-```sh
-pnpm install
-pnpm dev
-```
+| Task | Command |
+| --- | --- |
+| Install dependencies | `pnpm install` |
+| Start the local development site | `pnpm dev` |
+| Regenerate the digital photo gallery after changing `images/portfolio/` | `pnpm photos:sync` |
+| Regenerate the film gallery after adding, removing, or replacing files under `images/film/` | `pnpm film:sync` |
+| Regenerate the full-frame profile image after changing `images/profile/profile.JPG` | `pnpm profile:sync` |
+| Build the production site | `pnpm build` |
+| Preview the production build locally | `pnpm preview` |
 
-Create and inspect a production build with:
-
-```sh
-pnpm build
-pnpm preview
-```
-
-Regenerate the galleries or profile image with:
-
-```sh
-pnpm photos:sync
-pnpm film:sync
-pnpm profile:sync
-```
+After syncing new photos, refresh the local development site. Before deploying, run the relevant sync command(s), then `pnpm build`; commit the generated images and manifests along with the changes. GitHub Actions builds and deploys the committed site, so it does not need access to the ignored camera scans.
 
 ## Deployment
 
