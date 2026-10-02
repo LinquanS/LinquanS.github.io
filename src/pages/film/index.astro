@@ -1,0 +1,74 @@
+---
+import photos from "../../data/film.json";
+import "../../styles/portfolio.css";
+
+const groups = [];
+const groupMap = new Map();
+for (const photo of photos) {
+  if (!groupMap.has(photo.rollId)) {
+    const group = { id: photo.rollId, label: photo.roll, photos: [] };
+    groupMap.set(photo.rollId, group);
+    groups.push(group);
+  }
+  groupMap.get(photo.rollId).photos.push(photo);
+}
+const populatedGroups = groups.filter((group) => group.photos.length > 0);
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Film photographs by Linquan Sun, arranged by roll and folder." />
+    <meta name="theme-color" content="#f7f7f3" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="canonical" href="https://linquans.github.io/film/" />
+    <title>Film Photography | Linquan Sun</title>
+  </head>
+  <body>
+    <main class="portfolio film-page">
+      <a class="text-link back-link" href="/">← Back to the portfolio</a>
+      <section class="portfolio-intro">
+        <p class="eyebrow">Film photography</p>
+        <h1>On film<span>.</span></h1>
+        <p class="intro-copy">Photographs from the film rolls and folders below.</p>
+      </section>
+      {populatedGroups.length > 0 ? (
+        <>
+          <nav class="category-index" aria-label="Film rolls">
+            {populatedGroups.map((group) => <a class="category-link" href={`#${group.id}`}>{group.label}</a>)}
+          </nav>
+          {populatedGroups.map((group) => (
+            <section class="category-section" id={group.id} aria-labelledby={`${group.id}-title`}>
+              <div class="section-heading">
+                <div><p class="eyebrow">{group.photos.length} {group.photos.length === 1 ? "frame" : "frames"}</p><h2 id={`${group.id}-title`}>{group.label}</h2></div>
+              </div>
+              <div class="photo-grid">
+                {group.photos.map((photo, index) => (
+                  <button class="photo-card" type="button" data-full={photo.image} data-alt={photo.alt} data-title={photo.title} data-location={photo.location} data-date={photo.date} data-camera={photo.camera} data-lens={photo.lens} data-monochrome={String(photo.monochrome === true)} aria-label={`View frame ${index + 1} from ${group.label}`}>
+                    <img src={photo.thumbnail} alt={photo.alt} loading="lazy" decoding="async" />
+                    {(photo.title || photo.location) && <span class="photo-caption"><span>{photo.title}</span><span>{photo.location}</span></span>}
+                  </button>
+                ))}
+              </div>
+            </section>
+          ))}
+        </>
+      ) : (
+        <section class="gallery-empty"><p>No film photographs yet.</p><p class="empty-note">Add photos under <code>images/film/</code> and run <code>pnpm film:sync</code>.</p></section>
+      )}
+    </main>
+    <dialog class="lightbox" aria-label="Film photograph viewer">
+      <button class="lightbox-close" type="button" aria-label="Close photograph">×</button>
+      <button class="lightbox-zoom" type="button" aria-label="Zoom photograph">Zoom</button>
+      <button class="lightbox-bw" type="button" aria-label="Preview photograph in black and white" aria-pressed="false">B&amp;W preview</button>
+      <figure>
+        <img class="lightbox-image" alt="" />
+        <figcaption class="lightbox-caption"><span class="lightbox-title"></span><span class="lightbox-details"></span></figcaption>
+      </figure>
+    </dialog>
+    <script>
+      import "../../scripts/lightbox.js";
+    </script>
+  </body>
+</html>

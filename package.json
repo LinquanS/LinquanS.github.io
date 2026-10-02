@@ -1,0 +1,23 @@
+{
+  "name": "linquan-photography-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4173 --strictPort",
+    "photos:sync": "node scripts/sync-gallery.mjs",
+    "film:sync": "node scripts/sync-film.mjs",
+    "profile:sync": "node scripts/sync-profile.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.2.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@11.19.0",
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}
