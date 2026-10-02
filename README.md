@@ -8,8 +8,12 @@ A lightweight, static portfolio for Linquan Sun’s photographs.
 
 ```mermaid
 flowchart LR
-  A[Photo originals and backups<br/>local, not in Git] -->|photos:sync with Sharp| B[Optimized display images and thumbnails]
-  B --> C[Astro static site and photo manifest]
+  A[Portfolio originals<br/>images/portfolio/] -->|photos:sync with Sharp| B[Optimized portfolio images]
+  H[Film originals<br/>images/film/roll folders] -->|film:sync with Sharp| I[Optimized film images<br/>same roll folders]
+  B --> C[Astro portfolio and photo manifests]
+  I --> C
+  J[Profile original<br/>images/profile/profile.JPG] -->|profile:sync with Sharp| K[Square profile image]
+  K --> C
   C --> D[GitHub repository]
   D -->|push to main| E[GitHub Actions build]
   E --> F[GitHub Pages CDN]
@@ -17,20 +21,22 @@ flowchart LR
 ```
 
 - **Astro** builds static HTML, CSS, and JavaScript. There is no application server or database to maintain.
-- **GitHub** stores the site source, photo manifest, and selected optimized portfolio images. Original photo archives stay in a separate backup and are ignored by Git.
+- **GitHub** stores the site source, photo manifests, and optimized portfolio and film images. Camera originals stay in local source folders and are ignored by Git.
 - **GitHub Actions and GitHub Pages** build and serve the site. A custom domain can point to Pages when ready.
 - If the collection approaches GitHub Pages’ published-site size limit, the next step is to move photo assets to object storage such as Cloudflare R2 while keeping the site and its manifest in Git. The static pages can also be split into category pages if loading the full collection on one page becomes unwieldy.
 
 ## Photo workflow
 
-1. Put photo originals into folders under `images/portfolio/`. Folder names become gallery categories; nested folders become nested categories. Empty folders are omitted. The `style` and `pswp` folders are excluded.
-2. Run `pnpm photos:sync`. Sharp reads and rotates images according to their orientation, then creates 2400px display images and 640px thumbnails under `public/images/gallery/`. `src/data/photos.json` is regenerated at the same time.
+1. Put digital photo originals into folders under `images/portfolio/`. Folder names become gallery categories; nested folders become nested category names. Empty folders are omitted. The `style` and `pswp` folders are excluded.
+2. Run `pnpm photos:sync`. Sharp reads and rotates images according to their orientation, then creates 2400px display images and 640px thumbnails under `public/images/gallery/`. `src/data/photos.json` is regenerated, including a monochrome flag so the B&W preview control is hidden for already monochrome photographs.
 3. Photos are grouped by folder and sorted by filename within each folder, independent of image orientation.
-4. Review the site locally, then commit the generated gallery files and photo manifest along with any code changes.
+4. Put film scans into `images/film/`, keeping one folder per roll (and any nested folders you want). Run `pnpm film:sync` to create optimized copies under `public/images/film/` while keeping the roll and subfolder names. It also refreshes `src/data/film.json`. The **Film photographs** link opens a separate `/film/` gallery grouped by those folders.
+5. Keep the profile source at `images/profile/profile.JPG`. Run `pnpm profile:sync` to create the square, optimized `public/images/profile.jpg` used on the homepage.
+6. Review the site locally, then commit generated assets and manifests with any code changes.
 
-The public copies have their EXIF data removed to avoid accidentally publishing private details such as GPS coordinates. Optional display metadata can be added to the matching entry in `src/data/photos.json`: `title`, `location`, `date`, `camera`, and `lens`.
+The public photo copies have their EXIF data removed to avoid accidentally publishing private details such as GPS coordinates. Optional display metadata can be added to the matching entries in `src/data/photos.json` and `src/data/film.json`: `title`, `location`, `date`, `camera`, and `lens`.
 
-The portfolio displays responsive photo galleries with a zoomable lightbox and a reversible black-and-white preview. Thumbnails load lazily; clicking a photo loads its larger display image.
+The portfolio displays responsive galleries with a zoomable lightbox and a reversible black-and-white preview. The preview control is hidden for photos already detected as monochrome. Thumbnails load lazily; clicking a photo loads its larger display image.
 
 Keep camera originals backed up separately. Only curated, optimized images belong in this repository.
 
@@ -50,10 +56,12 @@ pnpm build
 pnpm preview
 ```
 
-Regenerate the gallery after adding or changing source photos with:
+Regenerate the galleries or profile image with:
 
 ```sh
 pnpm photos:sync
+pnpm film:sync
+pnpm profile:sync
 ```
 
 ## Deployment

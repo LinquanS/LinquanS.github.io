@@ -40,6 +40,15 @@ function urlPath(value) {
   return value.split(path.sep).map(encodeURIComponent).join("/");
 }
 
+async function isMonochrome(file) {
+  const { channels } = await sharp(file).stats();
+  const rgb = channels.slice(0, 3);
+  if (rgb.length < 3) return true;
+  const meanSpread = Math.max(...rgb.map((channel) => channel.mean)) - Math.min(...rgb.map((channel) => channel.mean));
+  const deviationSpread = Math.max(...rgb.map((channel) => channel.stdev)) - Math.min(...rgb.map((channel) => channel.stdev));
+  return meanSpread <= 1 && deviationSpread <= 1;
+}
+
 const imageFiles = await collect(sourceRoot);
 const grouped = new Map();
 for (const file of imageFiles) {
@@ -76,6 +85,7 @@ for (const file of imageFiles) {
     category,
     categoryId,
     orientation,
+    monochrome: /b\s*&\s*w|black.?white|monochrome/i.test(relative),
     _source: relative.split(path.sep).join("/"),
   };
   if (!grouped.has(category)) grouped.set(category, []);
@@ -100,6 +110,7 @@ for (const category of [...grouped.keys()].sort((a, b) => a.localeCompare(b, und
         image.clone().resize({ width: 640, height: 640, fit: "inside", withoutEnlargement: true })
           .jpeg({ quality: 78, mozjpeg: true, progressive: true }).toFile(item.thumbFile),
       ]);
+      item.photo.monochrome ||= await isMonochrome(item.thumbFile);
     });
   }
 }

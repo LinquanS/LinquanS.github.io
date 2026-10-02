@@ -42,6 +42,7 @@
       image.classList.remove("is-zoomed");
       zoom.textContent = "Zoom";
       image.classList.remove("is-monochrome");
+      monochrome.hidden = card.dataset.monochrome === "true";
       monochrome.setAttribute("aria-pressed", "false");
       monochrome.textContent = "B&W preview";
       dialog.showModal();
@@ -58,5 +59,5 @@
   });
   dialog.querySelector(".lightbox-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
-  dialog.addEventListener("close", () => { image.removeAttribute("src"); image.classList.remove("is-zoomed", "is-monochrome"); monochrome.setAttribute("aria-pressed", "false"); monochrome.textContent = "B&W preview"; });
+  dialog.addEventListener("close", () => { image.removeAttribute("src"); image.classList.remove("is-zoomed", "is-monochrome"); monochrome.hidden = false; monochrome.setAttribute("aria-pressed", "false"); monochrome.textContent = "B&W preview"; });
 })();

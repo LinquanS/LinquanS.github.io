@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "photos:sync": "node scripts/sync-gallery.mjs"
+    "photos:sync": "node scripts/sync-gallery.mjs",
+    "film:sync": "node scripts/sync-film.mjs",
+    "profile:sync": "node scripts/sync-profile.mjs"
   },
   "dependencies": {
     "astro": "^7.2.0"

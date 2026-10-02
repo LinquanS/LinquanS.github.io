@@ -1,5 +1,7 @@
 # Local original photographs are source material, not site assets.
 images/portfolio/
+images/film/
+images/profile/
 
 # Astro build output and dependencies.
 dist/
