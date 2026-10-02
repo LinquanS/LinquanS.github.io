@@ -1,4 +1,11 @@
-# Jekyll cache
-.jekyll-cache
+# Local original photographs are source material, not site assets.
+images/portfolio/
 
-_site
+# Astro build output and dependencies.
+dist/
+node_modules/
+.astro/
+
+# Legacy local Jekyll output, if present.
+_site/
+.jekyll-cache/
