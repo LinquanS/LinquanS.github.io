@@ -1,5 +1,6 @@
 .portfolio{width:min(1120px,calc(100% - 48px));margin:0 auto;color:#202522}
 .portfolio-intro{padding:clamp(76px,13vw,168px) 0 clamp(72px,11vw,132px);max-width:730px}
+.profile-avatar{display:block;width:76px;height:76px;margin:0 0 28px;border:1px solid #e2e5e1;border-radius:50%;object-fit:cover}
 .eyebrow{margin:0 0 18px;color:#748078;font:600 11px/1.4 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase}
 .portfolio h1{margin:0;color:#202522;font:400 clamp(56px,10vw,112px)/.98 "Noto Serif",Georgia,serif;letter-spacing:-.065em}
 .portfolio h1 span{color:#c77854}
