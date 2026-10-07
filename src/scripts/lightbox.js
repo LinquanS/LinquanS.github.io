@@ -4,13 +4,14 @@
     const styles = getComputedStyle(grid);
     const rowHeight = Number.parseFloat(styles.gridAutoRows);
     const rowGap = Number.parseFloat(styles.rowGap);
-    if (!rowHeight || !Number.isFinite(rowGap)) return;
+    const photoGap = Number.parseFloat(styles.getPropertyValue("--photo-gap"));
+    if (!rowHeight || !Number.isFinite(rowGap) || !Number.isFinite(photoGap)) return;
 
     const cards = [...grid.querySelectorAll(".photo-card")];
     for (const card of cards) card.style.gridRowEnd = "auto";
     for (const card of cards) {
       const height = card.getBoundingClientRect().height;
-      const rowSpan = Math.ceil((height + rowGap) / (rowHeight + rowGap));
+      const rowSpan = Math.ceil((height + photoGap) / (rowHeight + rowGap));
       card.style.gridRowEnd = `span ${rowSpan}`;
     }
   };
@@ -96,7 +97,6 @@
       image.classList.remove("is-monochrome");
       monochrome.hidden = card.dataset.monochrome === "true";
       monochrome.setAttribute("aria-pressed", "false");
-      monochrome.textContent = "B&W preview";
       dialog.showModal();
     });
   });
@@ -196,9 +196,8 @@
   monochrome.addEventListener("click", () => {
     const isMonochrome = image.classList.toggle("is-monochrome");
     monochrome.setAttribute("aria-pressed", String(isMonochrome));
-    monochrome.textContent = isMonochrome ? "Colour preview" : "B&W preview";
   });
   dialog.querySelector(".lightbox-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
-  dialog.addEventListener("close", () => { image.removeAttribute("src"); resetZoom(); image.classList.remove("is-monochrome"); monochrome.hidden = false; monochrome.setAttribute("aria-pressed", "false"); monochrome.textContent = "B&W preview"; });
+  dialog.addEventListener("close", () => { image.removeAttribute("src"); resetZoom(); image.classList.remove("is-monochrome"); monochrome.hidden = false; monochrome.setAttribute("aria-pressed", "false"); });
 })();
