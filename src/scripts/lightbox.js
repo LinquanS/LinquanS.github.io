@@ -87,6 +87,50 @@
     image.classList.remove("is-zoomed", "is-dragging");
   }
 
+  function updateStageOrientation(orientation) {
+    const isPortrait = orientation === "portrait";
+    dialog.dataset.orientation = isPortrait ? "portrait" : "landscape";
+    stage.dataset.orientation = isPortrait ? "portrait" : "landscape";
+    image.style.maxWidth = "100%";
+    image.style.maxHeight = "100%";
+    image.style.objectFit = "contain";
+
+    const width = image.naturalWidth || 1;
+    const height = image.naturalHeight || 1;
+    const aspect = width / height;
+    const availableWidth = stage.clientWidth || 1;
+    const availableHeight = stage.clientHeight || 1;
+    const maxWidthFromHeight = availableHeight * aspect;
+    const maxHeightFromWidth = availableWidth / aspect;
+    let renderWidth = availableWidth;
+    let renderHeight = availableHeight;
+
+    if (isPortrait) {
+      renderHeight = Math.min(availableHeight, height / width * availableWidth);
+      renderWidth = renderHeight * aspect;
+    } else {
+      renderWidth = Math.min(availableWidth, width / height * availableHeight);
+      renderHeight = renderWidth / aspect;
+    }
+
+    if (renderWidth > Math.min(availableWidth, maxWidthFromHeight)) {
+      renderWidth = Math.min(availableWidth, maxWidthFromHeight);
+      renderHeight = renderWidth / aspect;
+    }
+    if (renderHeight > Math.min(availableHeight, maxHeightFromWidth)) {
+      renderHeight = Math.min(availableHeight, maxHeightFromWidth);
+      renderWidth = renderHeight * aspect;
+    }
+
+    image.style.width = `${renderWidth.toFixed(2)}px`;
+    image.style.height = `${renderHeight.toFixed(2)}px`;
+  }
+
+  image.addEventListener("load", () => {
+    const orientation = image.naturalHeight > image.naturalWidth ? "portrait" : "landscape";
+    updateStageOrientation(orientation);
+  });
+
   document.querySelectorAll(".photo-card").forEach((card) => {
     card.addEventListener("click", () => {
       resetZoom();
@@ -94,6 +138,7 @@
       image.alt = card.querySelector("img")?.alt ?? "Portfolio photograph";
       title.textContent = card.dataset.title || "";
       details.textContent = [card.dataset.location, card.dataset.date, card.dataset.camera, card.dataset.lens].filter(Boolean).join(" · ");
+      updateStageOrientation(card.dataset.orientation === "portrait" ? "portrait" : "landscape");
       image.classList.remove("is-monochrome");
       monochrome.hidden = card.dataset.monochrome === "true";
       monochrome.setAttribute("aria-pressed", "false");

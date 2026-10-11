@@ -23,8 +23,9 @@
 .gallery-empty .empty-note{color:#748078;font:13px/1.6 Lato,sans-serif}
 .gallery-empty code{padding:2px 5px;background:#f0f1ed;font-size:12px}
 .lightbox{width:min(1100px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 24px);padding:56px 24px 20px;border:0;background:#161916;color:white;overflow:hidden}
-.lightbox::backdrop{background:rgba(12,15,13,.9)}.lightbox figure{margin:0}
-.lightbox-image{display:block;max-width:100%;max-height:100%;margin:0;object-fit:contain;transform-origin:center center;user-select:none;-webkit-user-drag:none;will-change:transform}
+.lightbox[data-orientation="portrait"]{width:min(520px,calc(100vw - 32px))}.lightbox::backdrop{background:rgba(12,15,13,.9)}.lightbox figure{margin:0}
+.lightbox-image{display:block;width:auto;height:auto;max-width:100%;max-height:100%;margin:0;object-fit:contain;transform-origin:center center;user-select:none;-webkit-user-drag:none;will-change:transform}
+.lightbox-stage[data-orientation="portrait"]{width:min(100%,520px);height:min(80dvh,860px);justify-self:center}.lightbox-stage[data-orientation="portrait"] .lightbox-image{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}.lightbox-stage[data-orientation="landscape"]{width:100%;height:min(72dvh,760px)}
 .lightbox-close{border:0;background:transparent;color:white;font:300 34px/1 Lato,sans-serif;cursor:pointer}
 .lightbox-caption{display:flex;justify-content:space-between;gap:20px;padding-top:14px;font:13px/1.5 Lato,sans-serif}
 .lightbox-title{color:white}.lightbox-details{color:#c4cbc5;text-align:right}
@@ -39,3 +40,44 @@
 
 .lightbox-toolbar{position:absolute;z-index:5;top:10px;right:10px;display:flex;align-items:center;gap:8px}.lightbox-toolbar button{position:static;border:1px solid #889088;border-radius:3px;background:#202522;color:white;padding:8px 12px;cursor:pointer}.lightbox-toolbar .lightbox-close{padding:1px 10px;font:300 32px/1 Lato,sans-serif}.lightbox-bw[aria-pressed="true"]{border-color:#69716b;background:#303530;color:#a8afa9}.lightbox-figure{display:grid;grid-template-rows:minmax(0,1fr) auto auto;min-height:0}.lightbox-stage{display:grid;place-items:center;width:100%;height:min(72dvh,760px);overflow:hidden;background:#161916;touch-action:none;user-select:none}.lightbox-image{cursor:zoom-in}.lightbox-image.is-zoomed{cursor:grab}.lightbox-image.is-dragging{cursor:grabbing}.lightbox-hint{margin:8px 0 0;color:#c4cbc5;text-align:center;font:11px/1.4 Lato,sans-serif}.lightbox-bw[hidden]{display:none}.lightbox-image.is-monochrome{filter:grayscale(1)}
 @media(max-width:600px){.lightbox{width:calc(100vw - 16px);max-height:calc(100dvh - 16px);padding:50px 12px 14px}.lightbox-stage{height:min(68dvh,760px);min-height:160px}.lightbox-caption{display:grid;gap:4px}.lightbox-details{text-align:left}}
+
+/* Academic personal-homepage study: plain type, blue links, catalogue navigation. */
+body{margin:0;background:#fff;color:#111;font-family:"Times New Roman",Times,serif}
+.portfolio{width:min(1080px,calc(100% - 40px));color:#111}
+.site-header{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:16px 0 10px;border-bottom:1px solid #777}
+.site-wordmark{color:#111;font:700 22px/1.3 "Times New Roman",Times,serif;text-decoration:underline;letter-spacing:0}
+.site-nav{display:flex;gap:14px;font:16px/1.45 "Times New Roman",Times,serif}
+.site-nav a,.text-link{color:#00e;text-decoration:underline;border:0;padding:0;font:inherit}
+.site-nav a:visited,.text-link:visited,.category-link:visited{color:#551a8b}
+.site-nav a[aria-current="page"]{color:#111;font-weight:bold}
+.portfolio-intro{max-width:760px;padding:28px 0 24px}
+.eyebrow{margin:0 0 8px;color:#444;font:12px/1.45 "Courier New",monospace;letter-spacing:0;text-transform:none}
+.portfolio h1{margin:0;color:#111;font:700 32px/1.1 "Times New Roman",Times,serif;letter-spacing:0}
+.portfolio h1 span{color:inherit}
+.intro-copy{max-width:680px;margin:10px 0 0;color:#111;font:16px/1.45 "Times New Roman",Times,serif}
+.archive-status{display:flex;flex-wrap:wrap;gap:2px 14px;width:max-content;max-width:100%;margin-top:16px;padding:7px 9px;border:1px solid #888;background:#f4f4f4;color:#333;font:12px/1.45 "Courier New",monospace}
+.machine-label{color:#444;font-weight:bold}
+.catalog-layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;align-items:start}
+.category-index{position:sticky;top:14px;align-self:start;margin:0;padding:10px 10px 12px;border:1px solid #888;background:#f7f7f7}
+.category-index>.eyebrow{margin-bottom:7px;font-weight:bold}
+.category-index ol{margin:0;padding-left:28px}
+.category-index li{padding:2px 0;font:14px/1.35 "Times New Roman",Times,serif}
+.category-link{display:flex;justify-content:space-between;gap:8px;padding:0;border:0;border-radius:0;color:#00e;font:inherit;text-decoration:underline;white-space:normal}
+.category-link small{color:#555;font:11px/1.6 "Courier New",monospace;text-decoration:none;white-space:nowrap}
+.category-link:hover,.category-link:focus-visible{border-color:transparent;color:#c00;text-decoration-thickness:2px}
+.category-galleries{min-width:0}
+.category-section{padding:0 0 42px;scroll-margin-top:16px}
+.category-section .section-heading{margin-bottom:12px;padding-top:9px;border-top:1px solid #999}
+.section-heading .eyebrow{font-size:11px}
+.portfolio h2{color:#111;font:700 22px/1.2 "Times New Roman",Times,serif;letter-spacing:0}
+.photo-count,.photo-caption,.lightbox-details{color:#444;font:12px/1.45 "Courier New",monospace}
+.photo-grid{--photo-gap:6px;column-gap:var(--photo-gap)}
+.photo-card img{background:#eee;outline:1px solid #aaa;outline-offset:-1px}
+.photo-caption span:first-child{color:#111}
+.about-page{min-height:100vh;padding-top:0}
+.about-page .portfolio-intro{padding-bottom:18px}
+.about-copy{max-width:680px}
+.about-profile-photo{margin-top:22px;outline:1px solid #aaa}
+.text-link:focus-visible,.site-nav a:focus-visible,.site-wordmark:focus-visible,.photo-card:focus-visible,.lightbox button:focus-visible{outline:2px solid #00e;outline-offset:3px}
+@media(max-width:760px){.catalog-layout{grid-template-columns:1fr;gap:20px}.category-index{position:static}.category-index ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px;columns:unset;margin:0;padding:0;list-style:none}.category-index li{min-width:0;break-inside:avoid}}
+@media(max-width:600px){.portfolio{width:min(calc(100% - 28px),600px)}.site-header{align-items:flex-start;flex-direction:column;gap:7px;padding-top:12px}.site-nav{gap:12px}.portfolio-intro{padding:24px 0 20px}.catalog-layout{gap:16px}.category-section{padding-bottom:34px}}
