@@ -1,0 +1,52 @@
+---
+import { photoGroups } from "../data/photo-groups.js";
+import CategoryNav from "../components/CategoryNav.astro";
+import PhotoCarousel from "../components/PhotoCarousel.astro";
+import "../styles/portfolio.css";
+
+export function getStaticPaths() {
+  return photoGroups.map((group) => ({
+    params: { category: group.id },
+    props: { group },
+  }));
+}
+
+const { group } = Astro.props;
+const categoryCopy = {
+  animal: { title: "", description: "We share the same planet but we often forget" },
+  people: { title: "", description: "Heart of Street Photography" },
+  places: { title: "", description: "Geometry & Spaces" },
+  still: { title: "", description: "Objects, light, and quiet arrangements" },
+};
+const pageCopy = categoryCopy[group.id] ?? { title: "Photographic Studies", description: "A selection of photographs by Linquan Sun." };
+const title = `${pageCopy.title} | Linquan Sun`;
+const description = pageCopy.description;
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f7f7f3" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class="portfolio">
+      <header class="site-header">
+        <a class="site-wordmark" href="/">Linquan Sun</a>
+        <CategoryNav currentCategory={group.id} />
+      </header>
+      <section class="category-section" aria-label={`${group.label} photographs`}>
+        <div class="section-heading">
+          <p class="category-intro">{pageCopy.description}</p>
+        </div>
+        <PhotoCarousel group={group} />
+      </section>
+    </main>
+    <script>
+      import "../scripts/gallery.js";
+    </script>
+  </body>
+</html>

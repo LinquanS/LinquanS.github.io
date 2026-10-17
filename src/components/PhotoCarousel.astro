@@ -1,0 +1,36 @@
+---
+const { group } = Astro.props;
+const carouselPhotos = group.photos.map(({ image, alt, title, location, date, camera, lens, caption, monochrome }) => ({
+  image,
+  alt,
+  title,
+  location,
+  date,
+  camera,
+  lens,
+  caption: caption ?? "",
+  monochrome: monochrome === true,
+}));
+---
+<figure class="photo-carousel" data-carousel data-photos={JSON.stringify(carouselPhotos)} aria-label={`${group.label} photographs`}>
+  <div class="carousel-stage" tabindex="0" aria-label="Click the left or right side of the photograph to navigate">
+    <img class="carousel-image" src={group.photos[0].image} alt={group.photos[0].alt} loading="eager" decoding="async" />
+  </div>
+  <figcaption class="carousel-footer">
+    <div class="carousel-caption" aria-live="polite">
+      <span class="carousel-title"></span>
+      <span class="carousel-details"></span>
+      <span class="carousel-description"></span>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-bw" type="button" aria-label="Preview photograph in black and white" aria-pressed="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8.5" fill="currentColor" />
+          <path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="white" />
+          <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
+      <span class="carousel-count" aria-live="polite"></span>
+    </div>
+  </figcaption>
+</figure>
