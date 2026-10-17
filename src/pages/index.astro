@@ -1,18 +1,9 @@
 ---
-import photos from "../data/photos.json";
+import { photoGroups } from "../data/photo-groups.js";
+import CategoryNav from "../components/CategoryNav.astro";
 import "../styles/portfolio.css";
 const title = "Linquan Sun | Photography";
 const description = "A personal photography portfolio by Linquan Sun.";
-const photoGroups = [];
-const groupMap = new Map();
-for (const photo of photos) {
-  if (!groupMap.has(photo.categoryId)) {
-    const group = { id: photo.categoryId, label: photo.category, photos: [] };
-    groupMap.set(photo.categoryId, group);
-    photoGroups.push(group);
-  }
-  groupMap.get(photo.categoryId).photos.push(photo);
-}
 ---
 <!doctype html>
 <html lang="en-GB">
@@ -21,7 +12,7 @@ for (const photo of photos) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f7f7f3" />
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/images/camera-favicon.svg" />
     <link rel="canonical" href="https://linquans.github.io/" />
     <title>{title}</title>
   </head>
@@ -29,62 +20,13 @@ for (const photo of photos) {
     <main class="portfolio">
       <header class="site-header">
         <a class="site-wordmark" href="/">Linquan Sun</a>
-        <nav class="site-nav" aria-label="Main navigation">
-          <a href="/" aria-current="page">Photographs</a>
-          <a href="/about/">About</a>
-        </nav>
+        <CategoryNav />
       </header>
       <section class="portfolio-intro">
         <p class="eyebrow">Personal photography homepage · catalogue no. 01</p>
-        <h1>Photographs</h1>
-        <p class="intro-copy">A collection of moments, places, and small details worth remembering.</p>
-        <div class="archive-status" aria-label="Collection information">
-          <span class="machine-label">ARCHIVE STATUS</span>
-          <span>{String(photos.length).padStart(3, "0")} photographs</span>
-          <span>{String(photoGroups.length).padStart(2, "0")} folders</span>
-          <span>ongoing / in progress</span>
-        </div>
+        <h1>Photography</h1>
+        <p class="intro-copy">"It is putting one's head, one's eye, and one's heart on the same axis."</p>
       </section>
-      <div class="catalog-layout">
-        <nav class="category-index" aria-label="Contents">
-          <p class="eyebrow">Contents</p>
-          <ol>
-            {photoGroups.map((group, index) => (
-              <li><a class="category-link" href={`#${group.id}`}><span>{group.label}</span><small>{String(index + 1).padStart(2, "0")} · {group.photos.length}</small></a></li>
-            ))}
-          </ol>
-        </nav>
-        <div class="category-galleries">
-          {photoGroups.map((group, groupIndex) => (
-            <section class="category-section" id={group.id} aria-labelledby={`${group.id}-title`}>
-              <div class="section-heading">
-                <div><p class="eyebrow">Series {String(groupIndex + 1).padStart(2, "0")} / {String(group.photos.length).padStart(2, "0")} photographs</p><h2 id={`${group.id}-title`}>{group.label}</h2></div>
-              </div>
-              <div class="photo-grid">
-                {group.photos.map((photo, index) => (
-                  <button class="photo-card" type="button" data-full={photo.image} data-alt={photo.alt} data-title={photo.title} data-location={photo.location} data-date={photo.date} data-camera={photo.camera} data-lens={photo.lens} data-orientation={photo.orientation} data-monochrome={String(photo.monochrome === true)} aria-label={`View ${photo.category} photograph ${index + 1}`}>
-                    <img src={photo.thumbnail} alt={photo.alt} loading="lazy" decoding="async" />
-                    {(photo.title || photo.location) && <span class="photo-caption"><span>{photo.title}</span><span>{photo.location}</span></span>}
-                  </button>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-      </div>
     </main>
-    <dialog class="lightbox" aria-label="Photograph viewer">
-      <div class="lightbox-toolbar">
-        <button class="lightbox-bw" type="button" aria-label="Preview photograph in black and white" aria-pressed="false">B&amp;W preview</button>
-        <button class="lightbox-close" type="button" aria-label="Close photograph">×</button>
-      </div>
-      <figure class="lightbox-figure">
-        <div class="lightbox-stage" tabindex="0" aria-label="Photograph viewer"><img class="lightbox-image" alt="" draggable="false" /></div>
-        <figcaption class="lightbox-caption"><span class="lightbox-title"></span><span class="lightbox-details"></span></figcaption>
-      </figure>
-    </dialog>
-    <script>
-      import "../scripts/lightbox.js";
-    </script>
   </body>
 </html>

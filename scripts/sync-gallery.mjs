@@ -82,6 +82,7 @@ for (const file of imageFiles) {
     date: original.date ?? "",
     camera: original.camera ?? "",
     lens: original.lens ?? "",
+    caption: original.caption ?? "",
     category,
     categoryId,
     orientation,
@@ -105,10 +106,10 @@ for (const category of [...grouped.keys()].sort((a, b) => a.localeCompare(b, und
       await fs.mkdir(path.dirname(item.thumbFile), { recursive: true });
       const image = sharp(item.file, { failOn: "none" }).rotate();
       await Promise.all([
-        image.clone().resize({ width: 2400, height: 2400, fit: "inside", withoutEnlargement: true })
-          .jpeg({ quality: 86, mozjpeg: true, progressive: true }).toFile(item.webFile),
-        image.clone().resize({ width: 640, height: 640, fit: "inside", withoutEnlargement: true })
-          .jpeg({ quality: 78, mozjpeg: true, progressive: true }).toFile(item.thumbFile),
+        image.clone().resize({ width: 4800, height: 4800, fit: "inside", withoutEnlargement: true })
+          .jpeg({ quality: 92, mozjpeg: true, progressive: true }).toFile(item.webFile),
+        image.clone().resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+          .jpeg({ quality: 82, mozjpeg: true, progressive: true }).toFile(item.thumbFile),
       ]);
       item.photo.monochrome ||= await isMonochrome(item.thumbFile);
     });
@@ -124,4 +125,3 @@ for (let i = 0; i < batches.length; i += 3) {
 
 await fs.writeFile(dataFile, `${JSON.stringify(photos, null, 2)}\n`);
 console.log(`Created ${photos.length} photos in ${grouped.size} non-empty folders.`);
-

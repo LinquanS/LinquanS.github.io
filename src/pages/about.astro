@@ -1,5 +1,6 @@
 ---
 import "../styles/portfolio.css";
+import CategoryNav from "../components/CategoryNav.astro";
 const title = "About | Linquan Sun";
 ---
 <!doctype html>
@@ -7,21 +8,18 @@ const title = "About | Linquan Sun";
   <head>
     <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="A little about Linquan Sun." /><title>{title}</title>
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/images/camera-favicon.svg" />
   </head>
   <body>
     <main class="portfolio about-page">
       <header class="site-header">
         <a class="site-wordmark" href="/">Linquan Sun</a>
-        <nav class="site-nav" aria-label="Main navigation">
-          <a href="/">Photographs</a>
-          <a href="/about/" aria-current="page">About</a>
-        </nav>
+        <CategoryNav currentPage="about" />
       </header>
       <section class="portfolio-intro">
         <p class="eyebrow">About the photographer</p><h1>About</h1>
         <div class="intro-copy about-copy">
-          <p>I grew up in China and now live in London. Photography is how I slow down and pay attention—to city streets, people, changing light, and the small details of everyday life. I work across digital and film, following whatever feels right for the moment.</p>
+          <p>I grew up in Guangzhou and now live in London. Photography is how I slow down and pay attention—to city streets, people, changing light, and the small details of everyday life. I work across digital and film, following whatever feels right for the moment.</p>
         </div>
         <img class="about-profile-photo" src="/images/profile.jpg" alt="Linquan Sun photographing outdoors" width="1200" height="1200" loading="lazy" decoding="async" />
       </section>
