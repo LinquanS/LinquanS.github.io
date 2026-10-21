@@ -11,6 +11,15 @@
     let currentIndex = 0;
     let requestedPhoto = null;
 
+    function preloadAdjacentPhotos() {
+      for (const offset of [-1, 1]) {
+        const photo = photos[(currentIndex + offset + photos.length) % photos.length];
+        const preload = new Image();
+        preload.decoding = "async";
+        preload.src = photo.thumbnail || photo.image;
+      }
+    }
+
     function sizeStageToImage() {
       if (!image.naturalWidth || !image.naturalHeight) return;
       const mobile = window.innerWidth <= 600;
@@ -28,8 +37,9 @@
     function showPhoto(index) {
       currentIndex = (index + photos.length) % photos.length;
       const photo = photos[currentIndex];
-      requestedPhoto = { src: new URL(photo.image, document.baseURI).href, monochrome: photo.monochrome };
-      image.src = photo.image;
+      const imageSrc = photo.thumbnail || photo.image;
+      requestedPhoto = { src: new URL(imageSrc, document.baseURI).href, monochrome: photo.monochrome };
+      image.src = imageSrc;
       image.alt = photo.alt;
       monochrome.disabled = true;
       title.textContent = photo.title || "";
@@ -39,6 +49,7 @@
       monochrome.setAttribute("aria-pressed", "false");
       count.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
       applyPhotoFilter();
+      preloadAdjacentPhotos();
     }
 
     image.addEventListener("load", () => {

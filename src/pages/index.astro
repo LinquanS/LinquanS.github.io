@@ -1,5 +1,4 @@
 ---
-import { photoGroups } from "../data/photo-groups.js";
 import CategoryNav from "../components/CategoryNav.astro";
 import "../styles/portfolio.css";
 const title = "Linquan Sun | Photography";
@@ -22,10 +21,11 @@ const description = "A personal photography portfolio by Linquan Sun.";
         <a class="site-wordmark" href="/">Linquan Sun</a>
         <CategoryNav />
       </header>
-      <section class="portfolio-intro">
-        <p class="eyebrow">Personal photography homepage · catalogue no. 01</p>
-        <h1>Photography</h1>
-        <p class="intro-copy">"It is putting one's head, one's eye, and one's heart on the same axis."</p>
+      <section class="portfolio-intro home-intro">
+        <div class="home-copy">
+          <h1>Photography<span class="heading-period">.</span></h1>
+          <p class="intro-copy">“It is putting one's head, one's eye, and one's heart on the same axis.”</p>
+        </div>
       </section>
     </main>
   </body>

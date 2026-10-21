@@ -77,10 +77,111 @@ body{margin:0;background:#f2eadb;color:#111;font-family:"Times New Roman",Times,
 .carousel-title{font-weight:bold}
 .carousel-details,.carousel-description{color:#444}
 .carousel-controls{display:flex;flex:none;align-items:center;gap:10px;min-height:38px}
-.carousel-bw{display:grid;place-items:center;width:38px;height:38px;padding:7px;border:1px solid #888;border-radius:50%;background:#fff;color:#111;cursor:pointer}
-.carousel-bw svg{display:block;width:22px;height:22px}
+.carousel-bw{display:grid;place-items:center;width:38px;height:38px;padding:0;border:1px solid #888;border-radius:50%;background:#fff;color:#111;cursor:pointer}
+.carousel-bw svg{display:block;width:22px;height:22px;margin:0}
 .carousel-bw[aria-pressed="true"]{background:#ddd}
 .carousel-bw[hidden]{display:none}
 .carousel-count{color:#444;font:12px/1.4 "Courier New",monospace;white-space:nowrap}
 .carousel-stage:focus-visible,.carousel-bw:focus-visible{outline:2px solid #00e;outline-offset:2px}
 @media(max-width:600px){.carousel-stage{height:min(60dvh,600px);min-height:160px}.carousel-footer{gap:8px;min-height:42px}}
+
+/* Research-catalogue styling */
+:root{--paper:#f4eee2;--paper-light:#faf7f0;--ink:#25251f;--muted:#777367;--rule:#c9c0ae;--accent:#a34830;--blue:#536a70}
+*{box-sizing:border-box}
+body{min-height:100vh;background:var(--paper);color:var(--ink);font-family:"Times New Roman",Times,serif}
+.portfolio{width:min(1120px,calc(100% - 64px));margin:0 auto;color:var(--ink)}
+.site-header{position:relative;display:flex;align-items:center;justify-content:space-between;gap:32px;padding:19px 0 16px;border-bottom:1px solid var(--ink)}
+.site-header::after{position:absolute;right:0;bottom:-4px;left:0;height:1px;background:var(--rule);content:""}
+.site-wordmark{display:flex;flex-direction:column;gap:1px;color:var(--ink);font:700 23px/1.05 Georgia,"Times New Roman",serif;text-decoration:none;white-space:nowrap}
+.site-wordmark::before{color:var(--muted);content:"THE PHOTOGRAPHIC NOTEBOOK";font:10px/1.3 "Courier New",monospace;letter-spacing:.09em}
+.site-nav{display:flex;align-items:center;justify-content:flex-end;gap:7px;font:13px/1.2 "Courier New",monospace}
+.site-nav a,.text-link{color:var(--ink);text-decoration:none}
+.site-nav a{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;padding:6px 10px;border:1px solid transparent;background:transparent;transition:background-color .18s ease,border-color .18s ease,color .18s ease}
+.site-nav .category-nav-link{width:40px;height:40px;min-height:40px;padding:4px}
+.category-icon{width:28px;height:28px;color:var(--blue);stroke-width:1.45}
+.site-nav a:hover,.site-nav a:focus-visible{border-color:var(--rule);background:var(--paper-light)}
+.site-nav a[aria-current="page"]{border-color:var(--ink);background:var(--ink);color:var(--paper-light)}
+.site-nav a[aria-current="page"] .category-icon{color:var(--paper-light)}
+.site-nav a:focus-visible,.site-wordmark:focus-visible,.text-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.header-note{color:var(--muted);font:11px/1.4 "Courier New",monospace;letter-spacing:.08em}
+.portfolio-intro{max-width:none;padding:0}
+.eyebrow{display:flex;align-items:center;gap:9px;margin:0;color:var(--muted);font:11px/1.5 "Courier New",monospace;letter-spacing:.07em;text-transform:uppercase}
+.portfolio h1{margin:0;color:var(--ink);font:400 clamp(52px,8vw,92px)/.98 Georgia,"Times New Roman",serif;letter-spacing:-.065em}
+.heading-period{color:var(--accent)}
+.intro-copy{max-width:500px;margin:22px 0 0;color:#555247;font:italic clamp(18px,2.1vw,23px)/1.55 Georgia,"Times New Roman",serif}
+.home-intro{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:390px;padding:64px 5.5% 32px;border-bottom:1px solid var(--rule)}
+.home-copy{position:relative;z-index:1}
+.home-copy .eyebrow{margin-bottom:27px}
+.home-copy h1{max-width:680px;font-size:clamp(64px,9.2vw,112px)}
+.home-copy .intro-copy{max-width:460px}
+.home-byline{margin:25px 0 0;color:var(--blue);font:12px/1.5 "Courier New",monospace}
+.category-section{padding:0 0 48px}
+.category-section .section-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin:37px 0 20px;padding:0 0 18px;border:0;border-bottom:1px solid var(--ink)}
+.category-heading .eyebrow{margin-bottom:10px}
+.category-heading h1{font-size:clamp(44px,6.2vw,72px)}
+.category-intro{margin:9px 0 0;color:#5d594e;font:italic 17px/1.4 Georgia,"Times New Roman",serif}
+.photo-carousel{padding:0;border:0;background:transparent;box-shadow:none}
+.carousel-stage{background:transparent;cursor:ew-resize}
+.carousel-image{object-fit:contain}
+.carousel-footer{min-height:56px;padding:8px 6px 0}
+.carousel-caption{width:calc(100% - 170px);font:12px/1.45 "Courier New",monospace}
+.carousel-title{color:var(--ink);font:italic 17px/1.3 Georgia,"Times New Roman",serif}
+.carousel-details,.carousel-description{color:var(--muted)}
+.carousel-bw{width:34px;height:34px;border-color:var(--rule);background:var(--paper-light);color:var(--ink)}
+.carousel-count{color:var(--accent);font:11px/1.4 "Courier New",monospace}
+.about-page{min-height:100vh;padding-top:0}
+.about-intro{padding:44px 5.5% 72px}
+.about-heading .eyebrow{margin-bottom:12px}
+.about-heading h1{font-size:clamp(56px,8vw,88px)}
+.about-layout{display:flex;flex-direction:column;align-items:flex-start;gap:35px;margin-top:39px}
+.about-copy{position:relative;max-width:510px;padding:20px 0 20px 23px;border-left:1px solid var(--rule);font:17px/1.75 Georgia,"Times New Roman",serif}
+.about-copy p{margin:0}
+.about-initial{position:absolute;top:-26px;left:8px;color:var(--accent);font:italic 56px/.9 Georgia,"Times New Roman",serif;opacity:.88}
+.about-coordinates{margin-top:27px!important;color:var(--ink);font:12px/1.8 "Courier New",monospace}
+.about-coordinates span:first-child{color:var(--accent)}
+.about-coordinates span:last-child{color:var(--muted);font-size:11px}
+.about-portrait{margin:0}
+.about-profile-photo{display:block;width:100%;height:auto;max-height:520px;margin:0;object-fit:cover}
+.about-portrait figcaption{display:flex;justify-content:space-between;gap:12px;padding:10px 2px 1px;color:var(--muted);font:9px/1.4 "Courier New",monospace;letter-spacing:.04em}
+.not-found-intro{min-height:65vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:48px 5.5%}
+.not-found-intro .eyebrow{margin-bottom:15px}
+.not-found-intro .intro-copy{margin:14px 0 28px}
+.text-link{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font:12px/1.5 "Courier New",monospace}
+.text-link span{font-size:17px}
+@media(max-width:760px){
+  .portfolio{width:min(calc(100% - 36px),600px)}
+  .site-header{align-items:flex-start;flex-direction:column;gap:12px;padding:14px 0}
+  .site-nav{justify-content:flex-start;flex-wrap:wrap;gap:4px}
+  .site-nav a{min-height:34px;padding:5px 8px}
+  .site-nav .category-nav-link{padding:4px}
+  .home-intro{min-height:340px;padding:45px 3% 24px}
+  .home-copy h1{font-size:clamp(54px,10vw,76px)}
+  .home-copy .eyebrow{align-items:flex-start;flex-direction:column;gap:3px;margin-bottom:20px}
+  .category-section .section-heading{margin-top:27px}
+  .about-intro{padding:32px 3% 48px}
+  .about-layout{gap:25px;margin-top:28px}
+  .about-copy{max-width:600px}
+  .about-profile-photo{max-height:440px;object-fit:contain}
+}
+@media(max-width:480px){
+  .portfolio{width:calc(100% - 28px)}
+  .site-nav{gap:2px}
+  .site-nav a{gap:5px;padding:5px 6px;font-size:11px}
+  .site-nav .category-nav-link{padding:4px}
+  .home-intro{min-height:0;padding:38px 2% 20px}
+  .home-copy h1{font-size:clamp(58px,14vw,76px)}
+  .home-copy .intro-copy{max-width:360px}
+  .category-section .section-heading{align-items:flex-start}
+  .category-heading h1{font-size:48px}
+  .carousel-footer{min-height:54px}
+  .carousel-caption{left:0;width:calc(100% - 100px);text-align:left;transform:none}
+  .carousel-title{font-size:15px}
+  .carousel-details,.carousel-description{font-size:10px}
+  .carousel-controls{gap:5px}
+  .carousel-bw{width:31px;height:31px}
+  .carousel-count{font-size:9px}
+  .about-portrait figcaption{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
