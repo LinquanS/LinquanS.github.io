@@ -29,7 +29,7 @@ const description = pageCopy.description;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f7f7f3" />
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/images/camera-favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
@@ -40,7 +40,10 @@ const description = pageCopy.description;
       </header>
       <section class="category-section" aria-label={`${group.label} photographs`}>
         <div class="section-heading">
-          <p class="category-intro">{pageCopy.description}</p>
+          <div class="category-heading">
+            <h1>{group.label}<span class="heading-period">.</span></h1>
+            <p class="category-intro">{pageCopy.description}</p>
+          </div>
         </div>
         <PhotoCarousel group={group} />
       </section>

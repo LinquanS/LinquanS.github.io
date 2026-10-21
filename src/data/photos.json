@@ -336,6 +336,22 @@
     "_source": "People/drink.jpg"
   },
   {
+    "image": "/images/gallery/people/web/gallery.jpg",
+    "thumbnail": "/images/gallery/people/thumbs/gallery.jpg",
+    "alt": "People photograph: gallery",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "People",
+    "categoryId": "people",
+    "orientation": "portrait",
+    "monochrome": true,
+    "_source": "People/gallery.jpg"
+  },
+  {
     "image": "/images/gallery/people/web/glass.jpg",
     "thumbnail": "/images/gallery/people/thumbs/glass.jpg",
     "alt": "People photograph: glass",
@@ -398,6 +414,22 @@
     "orientation": "landscape",
     "monochrome": false,
     "_source": "People/nice.jpg"
+  },
+  {
+    "image": "/images/gallery/people/web/night-talk.jpg",
+    "thumbnail": "/images/gallery/people/thumbs/night-talk.jpg",
+    "alt": "People photograph: night-talk",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "People",
+    "categoryId": "people",
+    "orientation": "portrait",
+    "monochrome": true,
+    "_source": "People/night-talk.jpg"
   },
   {
     "image": "/images/gallery/people/web/noble-man.jpg",
@@ -480,6 +512,22 @@
     "_source": "People/run-steps.JPG"
   },
   {
+    "image": "/images/gallery/people/web/sea.jpg",
+    "thumbnail": "/images/gallery/people/thumbs/sea.jpg",
+    "alt": "People photograph: sea",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "People",
+    "categoryId": "people",
+    "orientation": "landscape",
+    "monochrome": false,
+    "_source": "People/sea.jpg"
+  },
+  {
     "image": "/images/gallery/people/web/skateboard.jpg",
     "thumbnail": "/images/gallery/people/thumbs/skateboard.jpg",
     "alt": "People photograph: skateboard",
@@ -560,6 +608,22 @@
     "_source": "People/violinst-under-bridge.jpg"
   },
   {
+    "image": "/images/gallery/people/web/walk.jpg",
+    "thumbnail": "/images/gallery/people/thumbs/walk.jpg",
+    "alt": "People photograph: walk",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "People",
+    "categoryId": "people",
+    "orientation": "landscape",
+    "monochrome": false,
+    "_source": "People/walk.jpg"
+  },
+  {
     "image": "/images/gallery/people/web/way-home.jpg",
     "thumbnail": "/images/gallery/people/thumbs/way-home.jpg",
     "alt": "People photograph: way-home",
@@ -590,6 +654,22 @@
     "orientation": "landscape",
     "monochrome": false,
     "_source": "Places/barbican-building.jpg"
+  },
+  {
+    "image": "/images/gallery/places/web/canton-tower.jpg",
+    "thumbnail": "/images/gallery/places/thumbs/canton-tower.jpg",
+    "alt": "Places photograph: canton-tower",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "Places",
+    "categoryId": "places",
+    "orientation": "portrait",
+    "monochrome": false,
+    "_source": "Places/canton-tower.jpg"
   },
   {
     "image": "/images/gallery/places/web/effiel.jpg",
@@ -784,6 +864,22 @@
     "_source": "Places/sky-tree.jpg"
   },
   {
+    "image": "/images/gallery/places/web/stpauls-night.jpg",
+    "thumbnail": "/images/gallery/places/thumbs/stpauls-night.jpg",
+    "alt": "Places photograph: stpauls-night",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "Places",
+    "categoryId": "places",
+    "orientation": "landscape",
+    "monochrome": false,
+    "_source": "Places/stpauls-night.jpg"
+  },
+  {
     "image": "/images/gallery/places/web/stpauls.jpg",
     "thumbnail": "/images/gallery/places/thumbs/stpauls.jpg",
     "alt": "Places photograph: stpauls",
@@ -832,6 +928,22 @@
     "_source": "Still/blue-car.jpg"
   },
   {
+    "image": "/images/gallery/still/web/cafe-interior.jpg",
+    "thumbnail": "/images/gallery/still/thumbs/cafe-interior.jpg",
+    "alt": "Still photograph: cafe-interior",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "Still",
+    "categoryId": "still",
+    "orientation": "landscape",
+    "monochrome": true,
+    "_source": "Still/cafe-interior.jpg"
+  },
+  {
     "image": "/images/gallery/still/web/flowers-building.jpg",
     "thumbnail": "/images/gallery/still/thumbs/flowers-building.jpg",
     "alt": "Still photograph: flowers-building",
@@ -864,6 +976,22 @@
     "_source": "Still/flowers-cable.jpg"
   },
   {
+    "image": "/images/gallery/still/web/lamp-post.jpg",
+    "thumbnail": "/images/gallery/still/thumbs/lamp-post.jpg",
+    "alt": "Still photograph: lamp-post",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "Still",
+    "categoryId": "still",
+    "orientation": "portrait",
+    "monochrome": true,
+    "_source": "Still/lamp-post.JPG"
+  },
+  {
     "image": "/images/gallery/still/web/motorbikes.jpg",
     "thumbnail": "/images/gallery/still/thumbs/motorbikes.jpg",
     "alt": "Still photograph: motorbikes",
@@ -894,6 +1022,38 @@
     "orientation": "landscape",
     "monochrome": false,
     "_source": "Still/museum.jpg"
+  },
+  {
+    "image": "/images/gallery/still/web/plant.jpg",
+    "thumbnail": "/images/gallery/still/thumbs/plant.jpg",
+    "alt": "Still photograph: plant",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "Still",
+    "categoryId": "still",
+    "orientation": "landscape",
+    "monochrome": false,
+    "_source": "Still/plant.jpg"
+  },
+  {
+    "image": "/images/gallery/still/web/reception.jpg",
+    "thumbnail": "/images/gallery/still/thumbs/reception.jpg",
+    "alt": "Still photograph: reception",
+    "title": "",
+    "location": "",
+    "date": "",
+    "camera": "",
+    "lens": "",
+    "caption": "",
+    "category": "Still",
+    "categoryId": "still",
+    "orientation": "landscape",
+    "monochrome": false,
+    "_source": "Still/reception.jpg"
   },
   {
     "image": "/images/gallery/still/web/red-statue.jpg",
