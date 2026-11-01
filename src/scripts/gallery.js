@@ -60,7 +60,33 @@
       if (requestedPhoto && image.currentSrc === requestedPhoto.src) monochrome.disabled = false;
     });
     window.addEventListener("resize", sizeStageToImage);
+    let swipeStart = null;
+    let suppressClickUntil = 0;
+
+    stage.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse") return;
+      swipeStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+      stage.setPointerCapture?.(event.pointerId);
+    });
+
+    stage.addEventListener("pointerup", (event) => {
+      if (!swipeStart || swipeStart.id !== event.pointerId) return;
+      const deltaX = event.clientX - swipeStart.x;
+      const deltaY = event.clientY - swipeStart.y;
+      swipeStart = null;
+
+      if (Math.abs(deltaX) >= 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25) {
+        suppressClickUntil = Date.now() + 500;
+        showPhoto(deltaX < 0 ? currentIndex + 1 : currentIndex - 1);
+      }
+    });
+
+    stage.addEventListener("pointercancel", () => {
+      swipeStart = null;
+    });
+
     stage.addEventListener("click", (event) => {
+      if (Date.now() < suppressClickUntil) return;
       const bounds = stage.getBoundingClientRect();
       showPhoto(event.clientX < bounds.left + bounds.width / 2 ? currentIndex - 1 : currentIndex + 1);
     });
