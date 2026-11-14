@@ -10,7 +10,7 @@
     "profile:sync": "node scripts/sync-profile.mjs"
   },
   "dependencies": {
-    "astro": "^7.4.2"
+    "astro": "^7.4.7"
   },
   "engines": {
     "node": ">=22.23.4"
